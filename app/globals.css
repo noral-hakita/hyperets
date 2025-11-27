@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+/* CRITICAL: Force a dark background and white text */
+html, body {
+  overflow-x: hidden; 
+  overflow-y: auto;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif; 
+  background-color: #1a202c;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Keyframe Animations */
+@keyframes pulse-custom {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .7; transform: scale(1.01); }
+}
+.animate-pulse {
+  animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce-custom {
+  0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+.animate-bounce-subtle {
+  animation: bounce-custom 3s infinite;
+}
+
+@keyframes gapAnimation {
+  0% { letter-spacing: normal; }
+  50% { letter-spacing: 1px; }
+  100% { letter-spacing: normal; }
+}
+.animate-gap {
+  animation: gapAnimation 2s infinite;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-animated {
+  background: linear-gradient(-45deg, #000000, #111827, #1f2937, #065f46);
+  background-size: 400% 400%;
+  animation: backgroundShift 15s ease infinite;
+}
+
+/* Particles/Pixels Background */
+.bg-minecraft-pixels {
+  position: relative;
+  z-index: 1; 
+}
+.bg-minecraft-pixels::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+      0deg, 
+      rgba(6, 95, 70, 0.1) 0, 
+      rgba(6, 95, 70, 0.1) 2px, 
+      transparent 2px, 
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg, 
+      rgba(6, 95, 70, 0.1) 0, 
+      rgba(6, 95, 70, 0.1) 2px, 
+      transparent 2px, 
+      transparent 20px
+    );
+  background-size: 20px 20px;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* General Styling */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px); 
+  box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.glow {
+  box-shadow: 0 0 15px rgba(72, 187, 120, 0.5); 
+}
+.glow:hover {
+  box-shadow: 0 0 25px rgba(72, 187, 120, 0.8);
+}
+
+/* ADD THE WATER PARTICLE ANIMATION RIGHT HERE - AT THE END */
+
+/* Water Particle Animation */
+.water-particles {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(6, 95, 70, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(6, 95, 70, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(6, 95, 70, 0.12) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.water-particles::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 60% 30%, rgba(72, 187, 120, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(72, 187, 120, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(72, 187, 120, 0.09) 0%, transparent 50%);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-15px);
+  }
+}
